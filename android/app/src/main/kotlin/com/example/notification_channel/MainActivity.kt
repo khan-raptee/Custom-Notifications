@@ -234,7 +234,7 @@ class MainActivity : FlutterActivity() {
     val channelId = "i.apps.custom.notification"
     val description = "Bike Movement Notification"
     val bikeName = args["bike_name"] as String
-    
+
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
         notificationChannel.enableVibration(false)
@@ -253,6 +253,8 @@ class MainActivity : FlutterActivity() {
 
     // Expanded layout
     val expandedLayout = getBikeStatsLayout(isDarkTheme)
+    expandedLayout.setTextViewText(R.id.charge_percentage, "${args["current_percentage"]}")
+    expandedLayout.setTextViewText(R.id.distance_travelled, "${args["total_distance"]}")
 
     builder.setCustomBigContentView(expandedLayout)
     builder.setStyle(NotificationCompat.DecoratedCustomViewStyle())
@@ -282,14 +284,14 @@ class MainActivity : FlutterActivity() {
         val albumArt: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.charging_image)
 
         val notification = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.ic_charging_small)
+            .setSmallIcon(R.drawable.ic_charging)
             .setLargeIcon(albumArt)
             .setContentTitle(title)
             .setContentText(artist)
             .setSubText(album)
-            .addAction(R.drawable.ic_charging_small, "Previous", null)
-            .addAction(R.drawable.ic_charging_small, "Pause", null)
-            .addAction(R.drawable.ic_charging_small, "Next", null)
+            .addAction(R.drawable.ic_charging, "Previous", null)
+            .addAction(R.drawable.ic_charging, "Pause", null)
+            .addAction(R.drawable.ic_charging, "Next", null)
             .setStyle(mediaStyle)
             .setProgress(duration, position, false)
             .build()
@@ -297,14 +299,3 @@ class MainActivity : FlutterActivity() {
         notificationManager.notify(1, notification)
     }
 }
-
-/*
-class CustomRemoteViews(packageName: String, layoutId: Int) : RemoteViews(packageName, layoutId) {
-    fun setCustomTypeface(viewId: Int, context: Context) {
-        val typeFace = ResourcesCompat.getFont(context, R.font.conigen)
-        setViewVisibility(viewId, View.VISIBLE)
-        setTextViewTextSize(viewId, TypedValue.COMPLEX_UNIT_SP, 16f)
-        setInt(viewId, "setTypeface", typeFace?.style ?: Typeface.NORMAL)
-    }
-}
-*/

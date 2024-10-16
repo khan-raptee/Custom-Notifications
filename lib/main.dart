@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       await platform
                           .invokeMethod('showChargingNotificationMethod', {
                         'bike_name': 'Raptrix',
-                        'notification_id': 123,
+                        'notification_id': 111111,
                         'estimate_percentage': estimateProgress,
                         'estimate_time': '9:30 AM',
                         'current_percentage': seconds,
@@ -148,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       await platform
                           .invokeMethod('showChargingNotificationMethod', {
                         'bike_name': 'Raptrix',
-                        'notification_id': 123123,
+                        'notification_id': 222222,
                         'estimate_percentage': estimateProgress,
                         'estimate_time': '9:30 AM',
                         'current_percentage': seconds,
@@ -181,7 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     await platform
                         .invokeMethod('showBikeMovementNotificationMethod', {
                       'bike_name': 'Raptrix',
-                      'notification_id': 123123,
+                      'notification_id': 333333,
                       'is_moving': true,
                       'is_first_update': isFirstUpdate,
                     });
@@ -201,6 +201,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     await platform
                         .invokeMethod('showBikeStatsNotificationMethod', {
                       'bike_name': 'Raptrix',
+                      'total_distance': 124,
+                      'current_percentage': 90,
                       'notification_id': 444444,
                     });
                   } on PlatformException catch (e) {
